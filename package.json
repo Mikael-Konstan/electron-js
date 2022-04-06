@@ -1,0 +1,19 @@
+{
+    "name": "my-electron-app",
+    "version": "1.0.0",
+    "description": "Pack",
+    "main": "main.js",
+    "author": "Mikael Konstan",
+    "license": "MIT",
+    "scripts": {
+        "start": "electron .",
+        "build": "electron-packager ./ gruntBuild --platform=win32 --out=release --arch=x64 --electron-version=18.0.1 --overwrite"
+    },
+    "devDependencies": {
+        "electron": "^18.0.1",
+        "electron-packager": "^15.4.0"
+    },
+    "dependencies": {
+        "vue": "^3.2.31"
+    }
+}
