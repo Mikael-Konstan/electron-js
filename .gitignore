@@ -1,5 +1,8 @@
 node_modules
+vue3-js-vite/node_modules
+vue3-ts/node_modules
 .DS_Store
 dist
 dist-ssr
 *.local
+release

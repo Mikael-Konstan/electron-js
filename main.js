@@ -126,18 +126,19 @@ function createWindow() {
         width: 850,
         height: 600,
         webPreferences: {
+            webSecurity: false,
             preload: path.join(__dirname, 'preload.js')
         }
     })
 
-    win.loadURL('http://localhost:3000/').then(res => {
-        console.log('success', 'http://localhost:3000/')
+    win.loadURL('http://localhost:9527/').then(res => {
+        console.log('success', 'http://localhost:9527/')
     }).catch(err => {
-        console.log('fail', 'http://localhost:3000/')
-        win.loadFile('vue3-js-vite/dist/index.html').then(res => {
-            console.log('success', 'vue3/dist/index.html')
+        console.log('fail', 'http://localhost:9527/')
+        win.loadFile('web/index.html').then(res => {
+            console.log('success', 'web/index.html')
         }).catch(err => {
-            console.log('fail', 'vue3/dist/index.html')
+            console.log('fail', 'web/index.html')
             win.loadFile('index.html').then(res => {
                 console.log('success', 'index.html')
             }).catch(err => {
