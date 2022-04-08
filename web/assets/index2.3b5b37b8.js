@@ -1,1 +1,0 @@
-import{_ as e,o as r,a as t}from"./index.9bdaf821.js";const a={name:"three2",data(){return{}}};function n(o,c,s,_,p,d){return r(),t("div",null,"three2")}var i=e(a,[["render",n]]);export{i as default};

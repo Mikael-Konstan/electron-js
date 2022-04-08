@@ -162,6 +162,14 @@
   resolved "http://npm.joinf.com/@vue%2fshared/-/shared-3.2.31.tgz#c90de7126d833dcd3a4c7534d534be2fb41faa4e"
   integrity sha512-ymN2pj6zEjiKJZbrf98UM2pfDd6F2H7ksKw7NDt/ZZ1fh5Ei39X5tABugtT03ZRlWd9imccoK0hE8hpjpU7irQ==
 
+accumulate-stream@^5.0.0:
+  version "5.0.0"
+  resolved "http://npm.joinf.com/accumulate-stream/-/accumulate-stream-5.0.0.tgz#75b19c5f18f02a0a7eac2c58580919af7e5aa902"
+  integrity sha512-a1pAtAy+LFCAQ6EpAwDeHERf99nadIXa8UApaddabeF18IsL8cD67WL67E/cRJf4EkZyR9z4F+9g+OCl3Cqi4w==
+  dependencies:
+    bytes "^3.1.0"
+    ms "^2.1.3"
+
 asar@^3.1.0:
   version "3.1.0"
   resolved "http://npm.joinf.com/asar/-/asar-3.1.0.tgz#70b0509449fe3daccc63beb4d3c7d2e24d3c6473"
@@ -240,6 +248,11 @@ buffer-from@^1.0.0:
   resolved "http://npm.joinf.com/buffer-from/-/buffer-from-1.1.2.tgz#2b146a6fd72e80b4f55d255f35ed59a3a9a41bd5"
   integrity sha1-KxRqb9cugLT1XSVfNe1Zo6mkG9U=
 
+bytes@^3.1.0:
+  version "3.1.2"
+  resolved "http://npm.joinf.com/bytes/-/bytes-3.1.2.tgz#8b0beeb98605adf1b128fa4386403c009e0221a5"
+  integrity sha512-/Nf7TyzTx6S3yRJObOAV7956r8cr2+Oj8AC5dt8wSP3BQAoeX58NoHyCU8P8zGkNXStjTSi6fzO6F0pBdcYbEg==
+
 cacheable-request@^6.0.0:
   version "6.1.0"
   resolved "http://npm.joinf.com/cacheable-request/-/cacheable-request-6.1.0.tgz#20ffb8bd162ba4be11e9567d823db651052ca912"
@@ -252,6 +265,19 @@ cacheable-request@^6.0.0:
     lowercase-keys "^2.0.0"
     normalize-url "^4.1.0"
     responselike "^1.0.2"
+
+child-shell@^5.0.0:
+  version "5.0.0"
+  resolved "http://npm.joinf.com/child-shell/-/child-shell-5.0.0.tgz#a4ceee98007649988d9b0e75b2d60e108abdf3dc"
+  integrity sha512-mNki2AmChI8IQM+MQlbh1/+wuqWtosqMrWRv3+RVY19M2IX0cOlGCfaC6DXRgqwnLASsFsZcvUhSJoOVc12mHQ==
+  dependencies:
+    accumulate-stream "^5.0.0"
+    debug "^4.3.2"
+    kind-of "^6.0.3"
+    nanoid "^3.1.30"
+    p-queue "6.6.2"
+    p-timeout "4.1.0"
+    trim-buffer "^5.0.0"
 
 chromium-pickle-js@^0.2.0:
   version "0.2.0"
@@ -340,7 +366,7 @@ debug@^3.1.0:
   dependencies:
     ms "^2.1.1"
 
-debug@^4.0.1, debug@^4.1.0, debug@^4.1.1:
+debug@^4.0.1, debug@^4.1.0, debug@^4.1.1, debug@^4.3.2:
   version "4.3.4"
   resolved "http://npm.joinf.com/debug/-/debug-4.3.4.tgz#1319f6579357f2338d3337d2cdd4914bb5dcc865"
   integrity sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==
@@ -472,6 +498,11 @@ estree-walker@^2.0.2:
   version "2.0.2"
   resolved "http://npm.joinf.com/estree-walker/-/estree-walker-2.0.2.tgz#52f010178c2a4c117a7757cfe942adb7d2da4cac"
   integrity sha1-UvAQF4wqTBF6d1fP6UKtt9LaTKw=
+
+eventemitter3@^4.0.4:
+  version "4.0.7"
+  resolved "http://npm.joinf.com/eventemitter3/-/eventemitter3-4.0.7.tgz#2de9b68f6528d5644ef5c59526a1b4a07306169f"
+  integrity sha1-Lem2j2Uo1WRO9cWVJqG0oHMGFp8=
 
 extract-zip@^1.0.3:
   version "1.7.0"
@@ -792,6 +823,11 @@ keyv@^3.0.0:
   dependencies:
     json-buffer "3.0.0"
 
+kind-of@^6.0.3:
+  version "6.0.3"
+  resolved "http://npm.joinf.com/kind-of/-/kind-of-6.0.3.tgz#07c05034a6c349fa06e24fa35aa76db4580ce4dd"
+  integrity sha1-B8BQNKbDSfoG4k+jWqdttFgM5N0=
+
 load-json-file@^2.0.0:
   version "2.0.0"
   resolved "http://npm.joinf.com/load-json-file/-/load-json-file-2.0.0.tgz#7947e42149af80d696cbf797bcaabcfe1fe29ca8"
@@ -885,15 +921,23 @@ ms@2.1.2:
   resolved "http://npm.joinf.com/ms/-/ms-2.1.2.tgz#d09d1f357b443f493382a8eb3ccd183872ae6009"
   integrity sha1-0J0fNXtEP0kzgqjrPM0YOHKuYAk=
 
-ms@^2.1.1:
+ms@^2.1.1, ms@^2.1.3:
   version "2.1.3"
   resolved "http://npm.joinf.com/ms/-/ms-2.1.3.tgz#574c8138ce1d2b5861f0b44579dbadd60c6615b2"
   integrity sha1-V0yBOM4dK1hh8LRFedut1gxmFbI=
 
-nanoid@^3.3.1:
+nanoid@^3.1.30, nanoid@^3.3.1:
   version "3.3.2"
   resolved "http://npm.joinf.com/nanoid/-/nanoid-3.3.2.tgz#c89622fafb4381cd221421c69ec58547a1eec557"
   integrity sha512-CuHBogktKwpm5g2sRgv83jEy2ijFzBwMoYA60orPDR7ynsLijJDqgsi4RDGj3OJpy3Ieb+LYwiRmIOGyytgITA==
+
+node-powershell@^5.0.1:
+  version "5.0.1"
+  resolved "http://npm.joinf.com/node-powershell/-/node-powershell-5.0.1.tgz#e5bcf7a0ea0957fba67dabe035dd8337eeb2abf2"
+  integrity sha512-3Dcr0jTmwS9vGMTBgVmmGSTNw9byWT4djNYQF4BqI54DAX0GiW5oPPUPgChLimoIG0Eu0QgkUFSMq+xtT5xUsQ==
+  dependencies:
+    child-shell "^5.0.0"
+    is-wsl "^2.2.0"
 
 normalize-package-data@^2.3.2:
   version "2.5.0"
@@ -935,6 +979,11 @@ p-cancelable@^1.0.0:
   resolved "http://npm.joinf.com/p-cancelable/-/p-cancelable-1.1.0.tgz#d078d15a3af409220c886f1d9a0ca2e441ab26cc"
   integrity sha1-0HjRWjr0CSIMiG8dmgyi5EGrJsw=
 
+p-finally@^1.0.0:
+  version "1.0.0"
+  resolved "http://npm.joinf.com/p-finally/-/p-finally-1.0.0.tgz#3fbcfb15b899a44123b34b6dcc18b724336a2cae"
+  integrity sha1-P7z7FbiZpEEjs0ttzBi3JDNqLK4=
+
 p-limit@^1.1.0:
   version "1.3.0"
   resolved "http://npm.joinf.com/p-limit/-/p-limit-1.3.0.tgz#b86bd5f0c25690911c7590fcbfc2010d54b3ccb8"
@@ -948,6 +997,26 @@ p-locate@^2.0.0:
   integrity sha1-IKAQOyIqcMj9OcwuWAaA893l7EM=
   dependencies:
     p-limit "^1.1.0"
+
+p-queue@6.6.2:
+  version "6.6.2"
+  resolved "http://npm.joinf.com/p-queue/-/p-queue-6.6.2.tgz#2068a9dcf8e67dd0ec3e7a2bcb76810faa85e426"
+  integrity sha1-IGip3PjmfdDsPnory3aBD6qF5CY=
+  dependencies:
+    eventemitter3 "^4.0.4"
+    p-timeout "^3.2.0"
+
+p-timeout@4.1.0:
+  version "4.1.0"
+  resolved "http://npm.joinf.com/p-timeout/-/p-timeout-4.1.0.tgz#788253c0452ab0ffecf18a62dff94ff1bd09ca0a"
+  integrity sha1-eIJTwEUqsP/s8Ypi3/lP8b0Jygo=
+
+p-timeout@^3.2.0:
+  version "3.2.0"
+  resolved "http://npm.joinf.com/p-timeout/-/p-timeout-3.2.0.tgz#c7e17abc971d2a7962ef83626b35d635acf23dfe"
+  integrity sha1-x+F6vJcdKnli74NiazXWNazyPf4=
+  dependencies:
+    p-finally "^1.0.0"
 
 p-try@^1.0.0:
   version "1.0.0"
@@ -1252,6 +1321,11 @@ to-readable-stream@^1.0.0:
   version "1.0.0"
   resolved "http://npm.joinf.com/to-readable-stream/-/to-readable-stream-1.0.0.tgz#ce0aa0c2f3df6adf852efb404a783e77c0475771"
   integrity sha1-zgqgwvPfat+FLvtASng+d8BHV3E=
+
+trim-buffer@^5.0.0:
+  version "5.0.0"
+  resolved "http://npm.joinf.com/trim-buffer/-/trim-buffer-5.0.0.tgz#3d07d1646fa5b70d60d6f9d73f45747a3dc83e4f"
+  integrity sha512-PqdsRmhir3lUwraK/O6sdZ9QcmtUK0c6F1utX/WNquJsL4Jpdck+DSe9Mqy8Wk7uAQD/SlVn6cyGF5bj6VF33Q==
 
 trim-repeated@^1.0.0:
   version "1.0.0"

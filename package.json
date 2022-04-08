@@ -6,7 +6,7 @@
     "author": "Mikael Konstan",
     "license": "MIT",
     "scripts": {
-        "start": "electron .",
+        "start": "electron . --inspect",
         "build": "electron-packager ./ gruntBuild --platform=win32 --out=release --arch=x64 --electron-version=18.0.1 --overwrite"
     },
     "devDependencies": {
@@ -14,6 +14,7 @@
         "electron-packager": "^15.4.0"
     },
     "dependencies": {
+        "node-powershell": "^5.0.1",
         "vue": "^3.2.31"
     }
 }

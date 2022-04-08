@@ -2,29 +2,36 @@ const { app, BrowserWindow, ipcMain } = require('electron')
 const fs = require('fs');
 const path = require('path');
 const { readdir } = require('fs/promises');
+const { PowerShell } = require('node-powershell');
+
 
 const exec = require('child_process').exec;
 
-function shellCommand(path = 'D:/work/20220331_test/asset/erp/product/aefetch', all = 'false') {
-    let command = `sh build.sh '${path}' '${all}'`;
-    // console.log(command)
-    exec(command, function (error, stdout, stderr) {
-        if (error) {
-            console.log('error: ' + error);
-            return;
-        }
+function shellCommand(path = 'D:/work/20220407_test_hzz/asset/erp/ali1688/product', all = 'false') {
+    let command = `sh build.sh '${path}' '${all}' --force`;
+    console.log(command)
+    return new Promise((resolve, reject) => {
+        exec(command, function (error, stdout, stderr) {
+            if (error) {
+                reject(error)
+            } else if (stderr) {
+                reject(stderr)
+            } else {
+                resolve('success')
+            }
+        })
     })
 }
 
-ipcMain.on('buildPath', (event, data) => {
-    // console.log('main process', data);
-    data.forEach(item => {
-        // window系统斜杠正反 与bash相反
-        const rootPath = path.join(item.rootPath, item.label).replace(/\\/g, '/');
-        // console.log(rootPath)
-        shellCommand(rootPath);
-    })
-})
+// ipcMain.on('buildPath', (event, data) => {
+//     // console.log('main process', data);
+//     data.forEach(item => {
+//         // window系统斜杠正反 与bash相反
+//         const rootPath = path.join(item.rootPath, item.label).replace(/\\/g, '/');
+//         // console.log(rootPath)
+//         shellCommand(rootPath);
+//     })
+// })
 
 function getPathArr(root) {
     const rootObjFa = {} // 最终目录
@@ -98,13 +105,99 @@ async function handleGetDirectory(event, root) {
             console.log(rootObj);
         }
     } catch (err) {
-        console.error(err);
+        return console.error(err);
     }
     return rootObj
 }
 
+async function handleBuild(event, data) {
+    return new Promise((resolve, reject) => {
+        let len = data.length;
+        for (let item of data) {
+            if (item.children.length > 0) {
+                len--;
+                if (len === 0) {
+                    resolve('build success');
+                }
+                continue;
+            }
+            // window系统斜杠正反 与bash相反
+            const rootPath = path.join(item.rootPath, item.label).replace(/\\/g, '/');
+            // console.log(rootPath)
+            shellCommand(rootPath).then(res => {
+                console.log(res);
+                len--;
+                if (len === 0) {
+                    resolve('build success');
+                }
+            }, err => {
+                reject(err);
+            }).catch(err => {
+                reject(err);
+            })
+        }
+    })
+}
+
+function handleTest(event, data) {
+    let command = 'pwd';
+    command = 'sh test.sh';
+    console.log('0000000')
+    return new Promise((resolve, reject) => {
+        exec(command, function (error, stdout, stderr) {
+            console.log('0000000')
+            console.log(error)
+            console.log(stdout)
+            console.log(stderr)
+            if (error) {
+                console.log('1111111')
+                reject(error)
+            } else if (stderr) {
+                console.log('222222')
+                reject(stderr)
+            } else {
+                console.log('33333333')
+                resolve('success')
+            }
+        })
+    })
+}
+
+function handleTest2(event, data) {
+    const ps = new PowerShell();
+    let command = 'sh test.sh';
+    command = 'sh build.sh';
+    console.log('000');
+    try {
+        return ps.invoke(command)
+    } catch (err) {
+        return err
+    }
+    // .then(function (output) {
+    //     console.log(output)
+    // })
+    // .catch(function (err) {
+    //     console.log(err)
+    //     ps.dispose()
+    // })
+    // .finally(() => {
+    //     console.log('1111');
+    // })
+}
+
+async function checkFile(event, root) {
+    try {
+        const stat = fs.statSync(root)
+        return stat.isFile()
+    } catch (err) {
+        return console.error(err);
+    }
+}
+
 app.whenReady().then(() => {
     ipcMain.handle('Directory', handleGetDirectory)
+    ipcMain.handle('buildPath', handleTest2)
+    ipcMain.handle('checkFile', checkFile)
 
     createWindow()
 

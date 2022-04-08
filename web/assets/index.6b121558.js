@@ -1,1 +1,0 @@
-import{_ as e,o as a,a as _}from"./index.0ed467a8.js";const t={name:"dashboard",data(){return{}}},r={class:"graph"};function s(o,n,c,d,p,i){return a(),_("div",r)}var u=e(t,[["render",s],["__scopeId","data-v-7f1a638f"]]);export{u as default};
