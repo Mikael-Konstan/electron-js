@@ -224,19 +224,29 @@ function createWindow() {
         }
     })
 
+    const filePaths = [
+        'web/index.html',
+        'test/index.html',
+        'index.html',
+    ]
+
+    win.webContents.addListener('did-fail-load', (err, errorCode, errorDescription, validatedURL, isMainFrame, frameProcessId, frameRoutingId) => {
+        const index = filePaths.findIndex(p => validatedURL.endsWith(p)) + 1;
+        // console.log('fail', filePaths[index - 1], err);
+        console.log('fail', filePaths[index - 1], errorCode, errorDescription, validatedURL, isMainFrame, frameProcessId, frameRoutingId);
+        if (index < filePaths.length) {
+            win.loadFile(filePaths[index]);
+        }
+    })
+
+    win.webContents.addListener('did-finish-load', (res) => {
+        console.log('success', res);
+    })
+
     win.loadURL('http://localhost:9527/').then(res => {
         console.log('success', 'http://localhost:9527/')
     }).catch(err => {
         console.log('fail', 'http://localhost:9527/')
-        win.loadFile('web/index.html').then(res => {
-            console.log('success', 'web/index.html')
-        }).catch(err => {
-            console.log('fail', 'web/index.html')
-            win.loadFile('index.html').then(res => {
-                console.log('success', 'index.html')
-            }).catch(err => {
-                console.log('fail', 'index.html')
-            })
-        })
+        win.loadFile(filePaths[0]);
     })
 }
