@@ -1,30 +1,23 @@
 const { contextBridge, ipcRenderer } = require('electron');
 
 contextBridge.exposeInMainWorld('electronAPI', {
-  // buildPath: data => {
-  //   console.log('bridge process', data);
-  //   return ipcRenderer.send('buildPath', data);
-  // },
-  buildPath: data => {
-    console.log('bridge process', data);
-    return ipcRenderer.invoke('buildPath', data);
-  },
-  getDirectory: (root) => {
-    return ipcRenderer.invoke('Directory', root);
-  },
-  checkFile: (root) => {
-    return ipcRenderer.invoke('checkFile', root);
+  execShellCommand: (...args) => {
+    // 输出在chrome控制台
+    console.log('bridge process', ...args);
+    console.log('bridge process', arguments);
+    return ipcRenderer.invoke('execShellCommand', ...args);
   }
 })
 
 
-// window.addEventListener('DOMContentLoaded', () => {
-//   const replaceText = (selector, text) => {
-//     const element = document.getElementById(selector)
-//     if (element) element.innerText = text
-//   }
+window.addEventListener('DOMContentLoaded', () => {
+  // 可以在这里操作DOM
+  const replaceText = (selector, text) => {
+    const element = document.getElementById(selector)
+    if (element) element.innerText = text
+  }
 
-//   for (const type of ['chrome', 'node', 'electron']) {
-//     replaceText(`${type}-version`, process.versions[type])
-//   }
-// })
+  for (const type of ['chrome', 'node', 'electron']) {
+    replaceText(`${type}-version`, process.versions[type])
+  }
+})
